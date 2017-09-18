@@ -1,0 +1,85 @@
+@font-face {
+    font-family: funcity;
+    src: url(/resources/common/css/fonts/Fun_City_Level_2_Stencil.otf);
+}
+
+.uf-navbar {
+    position: fixed;
+    max-height: 55px;
+    width: 100%;
+    background-color: black;
+    opacity: 0.8;
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    -webkit-transition: all 150ms ease 0s;
+    -moz-transition: all 150ms ease 0s;
+    -o-transition: all 350ms ease 0s;
+    -ms-transition: all 150ms ease 0s;
+    transition: all 350ms ease 0s;
+    /*display:-webkit-flex;     display: -webkit-box;     display: flex;*/
+
+}
+.uf-header-fixed{
+    position: fixed;
+
+}
+.uf-main-menu {
+    text-align: center;
+    border: none;
+    text-transform: uppercase;
+    font-family: funcity;
+    letter-spacing: 1.3px;
+    display: -webkit-flex;
+    display: -webkit-box;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.uf-main-menu .uf-main-menu-nav {
+    text-align: justify
+}
+.uf-main-menu .uf-main-menu-nav .logo{
+    color: #ffffff;
+    font: 55px 'funcity';
+}
+
+.uf-main-menu li {
+    color: grey;
+    position: relative;
+    display: inline;
+    padding: 5px 10px;
+}
+
+.uf-main-menu a {
+    color: grey;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.uf-main-menu .language-btn {
+    margin-right: 2%;
+
+}
+
+.uf-main-menu a:hover {
+    color: #ffffff;
+}
+
+.uf-main-menu-scroll ul li > a {
+    color: #ffffff;
+}
+
+#main-wrapper{
+padding-top: 50px;
+}
+.data-table{
+    /*width: 100%;*/
+}
+.label{
+    vertical-align: -webkit-baseline-middle;
+}
+.row-panel-grid{
+
+}

@@ -1,0 +1,109 @@
+# Setup
+xmiModelPath: src/main/resources/algotech.xml
+# EA, MagicDraw16, MagicDraw17 or FQCN/.groovy script (implementing the XmiReader interface)
+umlTool: EA
+basePackageName:
+
+generateExtensionClasses: true
+# addExtensionAndBaseClassAnnotations is only valid if generateExtensionClasses is set to true
+# addExtensionAndBaseClassAnnotations: true
+
+
+#modelPreprocessingScript: model/model-preprocessing.groovy
+sourceCodeFormatting:
+#    implementation: dk.tigerteam.trimm.mdsd.java.generator.codewriter.JalopyFormattingCodeWriter
+    # Formatting exclusions can be specified even though implementation hasn't been specified (and the default JalopyFormattingCodeWriter is used)
+    #excludeFormattingForPackages: 
+        #- dk.tigerteam.mddexample.meta
+        #- dk.tigerteam.mddexample.test
+      
+
+# Paths
+generateBaseClassesToPath: target/generated-sources/domainmodel
+generateExtensionClassesToPath: src/main/java
+generateInterfacesToPath: target/generated-sources/domainmodel
+generateTestClassesToPath: target/generated-sources/generated-tests
+generateResourcesToPath: target/generated-sources/generated-resources
+
+mapUmlPropertyTypes:
+    - name: DateTime
+      javaType: org.joda.time.DateTime
+    #  jpaTypeConverterClass: org.joda.time.contrib.hibernate.PersistentDateTime
+    - name: LocalDate
+      javaType: org.joda.time.LocalDate
+    #  jpaTypeConverterClass: org.joda.time.contrib.hibernate.PersistentLocalDate
+    - name: byte__
+      javaType: byte[]
+    #- name: XMLGregorianCalendar
+    #  javaType: java.util.Calendar
+      #jpaTypeConverterClass: org.joda.time.contrib.hibernate.PersistentLocalDate  
+    - name: Max100Text
+      javaType: String
+    
+    - name: Max255Text
+      javaType: String  
+    
+    - name: Max50Text
+      javaType: String
+    
+    - name: PeselIdentifier
+      javaType: String
+
+    - name: ISODateTime
+      javaType: org.joda.time.DateTime     
+      
+      
+      
+
+# JPA Setup
+jpaSetup:
+    addTableAndColumnNames: true
+    # jpaNamedTablesAndColumnsNameResolver is only valid if addTableAndColumnNames is set to true
+    jpaNamedTablesAndColumnsNameResolver: 
+    # resolveTableNames, resolveColumnNames and resolveAttributeOverrideColumnNames are only valid when jpaNamedTablesAndColumnsNameResolver ISN'T specified
+    #resolveTableNames:
+    #   - defaultTableName: User
+    #     resolvedTableName: User_
+    #   - defaultTableName: By
+    #     resolvedTableName: By_
+    resolveColumnNames:
+       - defaultColumnName: desc
+         resolvedColumnName: desc_
+    #   - defaultColumnName: type
+    #     resolvedColumnName: type_
+    #resolveAttributeOverrideColumnNames:
+    #   - defaultColumnName: value_type_somethingelse
+    #     resolvedColumnName: v_t_s
+    
+    makeBaseClassesIntoMappedSuperClassesIfPossible: true
+    generatePresentFieldInEmbeddables: false
+    defaultToLazyFetchingForAllAssociations: true
+    #useOptionalOnAssociationsWherePossible: true
+    rootMappedSuperClass: AbstractEntity
+    # inheritanceStrategy and idStrategy are only valid when rootMappedSuperClass ISN'T specified
+    #inheritanceStrategy:
+    #    implementation: dk.tigerteam.mdsd.jpa.DefaultJpaInheritanceAndClazzesStrategy
+    #idStrategy:
+    #    implementation: dk.tigerteam.mdsd.jpa.DefaultJpaIdStrategy
+    # The generated ORM file will be placed in the <generateResourcesToPath>/META-INF folder and the default value is orm.xml
+    #ormXmlFileName: orm.xml
+
+# Extensions (note these listeners can also be groovy scripts containing a single class implement the GeneratorEventListener interface (or
+# which extend specializations thereof) 
+eventListeners:
+    - listener: dk.tigerteam.trimm.mdsd.java.generator.extension.SerialVersionUIDGeneratorListener
+    - listener: dk.tigerteam.trimm.mdsd.java.generator.extension.PropertySugarMethodsEventListener
+    - listener: dk.tigerteam.trimm.mdsd.jpa.Jpa2OrphanRemovalListener
+    - listener: dk.tigerteam.trimm.mdsd.java.generator.extension.BidirectionalGeneratorEventListener
+
+# Create Runtime Meta Model (is a requirement for createIntegrationTest)
+#createRuntimeMetaModel:
+#    packageName: pl.inteca.ipo.entity.meta
+
+# Create JPA Integration tests for all entities
+#createIntegrationTest:
+   # testClassName: CompleteModelIntegrationTest
+   # extendsClass: dk.tigerteam.mddexample.model.BaseJpaModelTest
+   # testPackageName: dk.tigerteam.mddexample.model
+   # autoHandleTransactionsAndResources: true
+

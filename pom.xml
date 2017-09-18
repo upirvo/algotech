@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>pl.upir.algotechtest</groupId>
+    <artifactId>algotechtest</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.6.RELEASE</version>
+    </parent>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <trimm.version>1.0.0</trimm.version>
+        <java.version>1.8</java.version>
+        <m2e.apt.activation>jdt_apt</m2e.apt.activation>
+    </properties>
+
+
+    <modules>
+        <module>AlgotechTestModel</module>
+        <module>AlgotechTestApp</module>
+    </modules>
+
+
+
+
+    <repositories>
+
+        <repository>
+            <id>tigerteam-maven2-repository</id>
+            <name>tigerteam.dk Repository for Maven 2</name>
+            <url>http://www.tigerteam.dk/maven2/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>tigerteam-maven2-repository</id>
+            <name>tigerteam.dk Repository for Maven 2</name>
+            <url>http://www.tigerteam.dk/maven2/</url>
+        </pluginRepository>
+
+    </pluginRepositories>
+
+
+
+
+</project>

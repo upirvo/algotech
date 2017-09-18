@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+         <meta name="apple-mobile-web-app-capable" content="yes"/>-->
+        <!--<h:outputScript name="/js/swipe.js" library="ultima-layout" target="body"/>-->
+        <!--<h:outputScript name="i18n/lang_pl.js" library="common" target="body"/>-->
+
+        <h:outputScript name="/js/jquery-3.1.1.min.js" library="common"/>
+        <h:outputScript name="/js/jquery-ui.min.js" library="common"/>
+
+
+    </f:facet>
+    <title>#{app['login.page.title']}</title>
+
+</h:head>
+
+<h:body class="exception-body notfound-page">
+
+    <div class="exception-type">
+    </div>
+
+    <div class="card exception-panel">
+        <i class="material-icons"></i>
+        <h1>Strona nie została znaleziona</h1>
+        <div class="exception-detail">Strona, której szukasz, nie istnieje.</div>
+        <button id="j_idt10" name="j_idt10" type="button"
+                class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only secondary"
+                onclick="window.open('/','_self')" role="button" aria-disabled="false"><span
+                class="ui-button-text ui-c">Powrót do strony głównej</span></button>
+    </div>
+
+
+</h:body>
+
+</html>

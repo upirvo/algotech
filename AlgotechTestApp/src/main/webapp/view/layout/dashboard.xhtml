@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/view/template.xhtml">
+    <ui:define name="content">
+        <h:form id="form">
+            <p:panel id="add" header="Add new user" style="margin-bottom:20px">
+                <f:facet name="footer">
+                    <div class=" ui-corner-all">
+                        <p:commandButton value="Save user" actionListener="#{usersBean.saveUser}"
+                                         update="@form"/>
+                    </div>
+                </f:facet>
+                <div class="ui-fluid">
+                    <p:message id="msgPesel" rendered="true" for="msgPesel" showSummary="true" showDetail="false"/>
+                    <p:panelGrid columns="6" id="editForm"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                                 layout="grid"
+                                 styleClass="ui-panelgrid-blank">
+
+                        <p:outputLabel value="Name" for="name" styleClass="label "/>
+                        <p:inputText value="#{usersBean.name}" id="name" label="Name" required="true"
+                                     validatorMessage="Required field" placeholder="Name"/>
+                        <p:outputLabel value="Surname" styleClass="label " for="surname"/>
+                        <p:inputText value="#{usersBean.surname}" id="surname" label="Surname" required="true"
+                                     validatorMessage="Required field" placeholder="Surname"/>
+                        <p:outputLabel value="Pesel" styleClass="label " for="pesel"/>
+                        <p:inputText value="#{usersBean.pesel}" id="pesel" label="Pesel" required="true" validator="peselValidator"
+                                     placeholder="Pesel">
+                            <!--<f:validateLength minimum="11" maximum="11"/>-->
+                           <!-- <f:event
+                                    listener="#{usersBean.validate}"
+                                    type="preValidate"/>-->
+                             <!--<p:ajax event="keyup" update="msgPesel"  immediate="true" process="@this"
+                                               listener="#{usersBean.validate(null,component.findComponent('msgPesel'))}"/>-->
+                        </p:inputText>
+                    </p:panelGrid>
+                </div>
+            </p:panel>
+
+            <p:panel id="show" header="Users" style="margin-bottom:20px">
+
+                <h:panelGrid cellpadding="10" layout="grid">
+                    <p:dataTable id="tbl" var="user" rowIndexVar="rowID" reflow="true"
+                                 value="#{usersBean.userList}"
+                                 rowKey="#{user.id}"
+                                 rows="5" paginator="true" emptyMessage="Empty table"
+                                 rowsPerPageTemplate="10,50,100"
+                                 styleClass="data-table"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 resizableColumns="true">
+
+                        <!--<p:ajax event="page" global="false"/>-->
+                        <!-- <p:ajax event="rowDblselect" listener="#{notificationEditBean.test()}"redirect("/notification/view/"+#{noti.id}) oncomplete='redirect("/notification/view/"+#{noti.id})'/> -->
+                        <p:ajax event="rowDblselect" listener="#{usersBean.updateUser}" update="form:editForm"/>
+
+
+                        <p:column selectionMode="multiple"
+                                  style="width:16px;text-align:center" resizable="false"/>
+                        <p:column style="text-align:center"
+                                  headerText="Id">
+                            <h:outputText value="#{user.id}"
+                                          styleClass="data-table-content"/>
+                        </p:column>
+                        <p:column styleClass="data-table-column"
+                                  headerText="Name">
+                            <h:outputText value="#{user.name}" styleClass="data-table-content"/>
+                        </p:column>
+
+                        <p:column styleClass="data-table-column"
+                                  headerText="Surname">
+                            <h:outputText value="#{user.surname}"
+                                          styleClass="data-table-content"/>
+                        </p:column>
+
+                        <p:column styleClass="data-table-column"
+                                  headerText="Pesel">
+                            <h:outputText value="#{user.pesel}" styleClass="data-table-content"/>
+                        </p:column>
+                        <p:column style="text-align:center"
+                                  headerText="Birthdate">
+                            <h:outputText value="#{user.birth}" styleClass="data-table-content"/>
+                        </p:column>
+                        <p:column style="text-align:center"
+                                  headerText="Age">
+                            <h:outputText value="#{user.age}" styleClass="data-table-content"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
