@@ -19,7 +19,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Created by Upir on 2017-05-08.
+ * Created by Upir on 2017-09-17.
+ * Pesel validator
  */
 
 @ManagedBean

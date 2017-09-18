@@ -24,6 +24,10 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.upir.algotechtest.entity.AbstractEntity;
 
+/**
+ * Main application class
+ * @athor Vitalii Upir
+ */
 @ComponentScan
 @Configuration
 @EntityScan( basePackageClasses = {AbstractEntity.class})
@@ -47,6 +51,11 @@ public class AlgotechTestApp extends SpringBootServletInitializer /*implements S
 		return registrationBean;
 	}
 
+	/**
+	 * Faces servlet init
+	 * @param multipartConfigElement
+	 * @return
+	 */
 	@Bean
 	public ServletRegistrationBean servletRegistrationBean(MultipartConfigElement multipartConfigElement) {
 		FacesServlet servlet = new FacesServlet();
@@ -56,40 +65,20 @@ public class AlgotechTestApp extends SpringBootServletInitializer /*implements S
 		return servletRegistrationBean;
 	}
 
-	/*@Bean
-	public EmbeddedServletContainerFactory servletContainer() {
-		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-		factory.setPort(8080);
-		factory.setSessionTimeout(10, TimeUnit.MINUTES);
-		return factory;
-	}*/
-
+	/**
+	 * Own resolver
+ 	 * @return
+	 */
 	@Bean(name = "myresolver")
 	public ViewResolver getViewResolver(){
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		return resolver;
 	}
 
-
-	/*@Bean
-	public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
-		return new ServletListenerRegistrationBean<ConfigureListener>(
-				new ConfigureListener());
-	}*/
-
-	/*@Override
-	public void setServletContext(ServletContext servletContext) {
-		servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
-	}
-*/
-	/*@Override
-	public void setServletContext(ServletContext servletContext) {
-		ServletRegistration servletRegistration = servletContext.getServletRegistration("Faces Servlet");
-		if (servletRegistration != null) {
-			servletRegistration.addMapping("*.xhtml");
-		}
-	}*/
-
+	/**
+	 * Resource bundle for translating
+	 * @return
+	 */
 	@Bean
 	public ResourceBundle resourceBundle() {
 		return ResourceBundle.getBundle("app");

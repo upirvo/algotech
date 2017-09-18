@@ -4,3 +4,5 @@
 target
 *.iml
 h2/*
+AlgotechTestApp/h2/test.lock.db
+AlgotechTestApp/h2/test.mv.db

@@ -11,6 +11,9 @@ import pl.upir.algotechtest.repository.UserRepository;
 
 import java.util.List;
 
+/**
+ * Business logic
+ */
 @Service
 @Transactional
 public class UserService {

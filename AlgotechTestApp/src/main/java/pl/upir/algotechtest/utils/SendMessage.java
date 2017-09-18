@@ -6,7 +6,8 @@ import javax.faces.context.Flash;
 import javax.faces.validator.ValidatorException;
 
 /**
- * Created by Upir on 2016-11-24.
+ * Created by Upir on 2017-09-17.
+ * Send message util
  */
 public class SendMessage {
 

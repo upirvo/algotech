@@ -31,7 +31,6 @@ import org.springframework.core.env.Environment;
 import pl.upir.algotechtest.services.UserService;
 import pl.upir.algotechtest.utils.SendMessage;
 import pl.upir.algotechtest.web.controller.MainController;
-//import pl.upir.algotechtest.web.view.lazy.NotiLazyDataModel;
 
 @ManagedBean
 public class UsersBean implements Serializable {
@@ -53,15 +52,17 @@ public class UsersBean implements Serializable {
 	private Date birth;
 
 
-	//private NotiLazyDataModel notifications;
-
-
-
+	/**
+	 * Initialized bean method
+	 */
 	@PostConstruct
 	public void init(){
 		getAllUsers();
 	}
 
+	/**
+	 * Save user object to DB by service
+	 */
 	public void saveUser(){
 		if(user==null) {
 			user = new User();
@@ -74,6 +75,11 @@ public class UsersBean implements Serializable {
 		clean();
 	}
 
+	/**
+	 * String pesel type to byte array
+	 * @param x
+	 * @return
+	 */
 	private static byte[] longToBytes(String x) {
 		String[] str = x.split("");
 		byte[] bytes = new byte[11];
@@ -83,6 +89,9 @@ public class UsersBean implements Serializable {
 		return bytes;
 	}
 
+	/**
+	 * Get all user by service
+	 */
 	private void getAllUsers(){
 		userList = userService.getAllUsers();
 		userList.forEach(x->{
@@ -93,6 +102,10 @@ public class UsersBean implements Serializable {
 	}
 
 
+	/**
+	 * Double click in table
+	 * @param event
+	 */
 	public void updateUser(final SelectEvent event){
 		user = (User) event.getObject();
 		System.out.println(event.getObject());
@@ -112,6 +125,11 @@ public class UsersBean implements Serializable {
 		
 	}
 
+	/**
+	 * Get year from pesel
+	 * @param PESEL
+	 * @return
+	 */
 	private int getBirthYear(byte[] PESEL) {
 		int year;
 		int month;
@@ -137,6 +155,11 @@ public class UsersBean implements Serializable {
 		return year;
 	}
 
+	/**
+	 * Get month from pesel
+	 * @param PESEL
+	 * @return
+	 */
 	private int getBirthMonth(byte[] PESEL) {
 		int month;
 		month = 10 * PESEL[2];
@@ -157,6 +180,11 @@ public class UsersBean implements Serializable {
 	}
 
 
+	/**
+	 * Get day from pesel
+	 * @param PESEL
+	 * @return
+	 */
 	private int getBirthDay(byte[] PESEL) {
 		int day;
 		day = 10 * PESEL[4];
@@ -164,6 +192,13 @@ public class UsersBean implements Serializable {
 		return day;
 	}
 
+	/**
+	 * Get age from pesel
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @return
+	 */
 	private int calculateAge(int year, int month, int day) {
 		Date now = new Date();
 		int nowMonth = now.getMonth()+1;
